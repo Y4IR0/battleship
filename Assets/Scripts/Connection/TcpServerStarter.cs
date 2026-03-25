@@ -7,6 +7,7 @@ public class TcpServerStarter : MonoBehaviour
     {
         TcpServer.StartServer(port);
         Thread.Sleep(50);
-        GameManager.instance.StartConnection();
+        // disabled, idc rn
+        //GameManager.instance.StartConnection();
     }
 }

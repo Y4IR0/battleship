@@ -44,6 +44,7 @@ class TcpServer
 	static void AcceptNewClients(TcpListener listener, List<TcpNetworkConnection> clients) {
 		if (listener.Pending()) {
 			TcpClient newTcpClient = listener.AcceptTcpClient();
+			TcpNetworkConnection connection = new TcpNetworkConnection(newTcpClient);
 			
 			clients.Add(connection);
 		}
@@ -84,25 +85,26 @@ class TcpServer
 	}
 	static void HandleMessages(List<TcpNetworkConnection> clients) {
 		for (int i = clients.Count - 1; i >= 0; i--) {
-			TcpClient client = clients[i];
+			TcpNetworkConnection client = clients[i];
 
-			if (client.Available <= 0) return;
-			
-			
-			NetworkStream stream = client.GetStream();
-
-			try
-			{
-				byte[] data = ReadFullMessage(stream);
-				OscMessage message = OscMessage.Read(data, data.Length);
-				SendMessage(client, message);
-			}
-			catch (IOException e)
-			{
-				Debug.LogWarning($"Client disconnected: {e.Message}");
-				client.Close();
-				clients.Remove(client);
-			}
+			// Currently broken. dont care rn.
+			// if (client.Available <= 0) return;
+			//
+			//
+			// NetworkStream stream = client.GetStream();
+			//
+			// try
+			// {
+			// 	byte[] data = ReadFullMessage(stream);
+			// 	OscMessage message = OscMessage.Read(data, data.Length);
+			// 	SendMessage(client, message);
+			// }
+			// catch (IOException e)
+			// {
+			// 	Debug.LogWarning($"Client disconnected: {e.Message}");
+			// 	client.Close();
+			// 	clients.Remove(client);
+			// }
 		}
 	}
 	static void ArrangeMessage(byte[] data)
@@ -123,11 +125,13 @@ class TcpServer
 			// If any of our current clients are disconnected, 
 			// we close the TcpClient to clean up resources, and remove it from our list:
 			// (Note that this type of for loop is needed since we're modifying the collection inside the loop!)
-			if (!clients[i].Connected) {
-				clients[i].Close();
-				clients.RemoveAt(i);
-				//Debug.Log($"Removing client. Number of connected clients: {clients.Count}");
-			}
+			
+			// dont work, dont care rn
+			// if (!clients[i].Status.Connected) {
+			// 	clients[i].Close();
+			// 	clients.RemoveAt(i);
+			// 	//Debug.Log($"Removing client. Number of connected clients: {clients.Count}");
+			// }
 		}
 	}
 }

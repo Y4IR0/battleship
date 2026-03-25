@@ -10,7 +10,8 @@ public class TCPTEST : MonoBehaviour
     {
         clickedTimes++;
         clickedTimes %= 5;
-        GameManager.instance.SendMessage("/yo/mama", clickedTimes, Time.time);
+        // disabled i dont care rn
+        //GameManager.instance.SendMessage("/yo/mama", clickedTimes, Time.time);
         
         //OscMessage message = new OscMessage("/yo/mama");
         //message.Append(clickedTimes);
