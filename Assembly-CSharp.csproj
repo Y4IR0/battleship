@@ -46,11 +46,12 @@
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\6000.0.66f2\Editor\Data\Tools\Unity.SourceGenerators\Unity.UIToolkit.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Connection\ConnectionLog.cs" />
     <Compile Include="Assets\Scripts\Connection\UnityTcpClient.cs" />
-    <Compile Include="Assets\Scripts\Connection\TcpMessageDispatcher.cs" />
     <Compile Include="Assets\Scripts\Connection\TCPRECEIVETEST.cs" />
     <Compile Include="Assets\Scripts\UI\TcpServerStarter.cs" />
     <Compile Include="Assets\Scripts\Connection\TCPTEST.cs" />
+    <Compile Include="Assets\Scripts\Connection\TcpNetworkConnection.cs" />
     <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\Connection\TcpServer.cs" />

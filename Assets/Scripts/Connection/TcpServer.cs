@@ -4,7 +4,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Net; // For IPAddress
 using System.Net.Sockets;
-using System.Threading; // For TcpListener, TcpClient
+using System.Threading;
+using NetworkConnections; // For TcpListener, TcpClient
 using Rug.Osc;
 using UnityEngine;
 
@@ -24,7 +25,7 @@ class TcpServer
 		TcpListener listener = new TcpListener(IPAddress.Any, port);
 		listener.Start();
 		
-		List<TcpClient> clients = new List<TcpClient>();
+		List<TcpNetworkConnection> clients = new List<TcpNetworkConnection>();
 
 		while (true) {
 			AcceptNewClients(listener, clients);
@@ -33,17 +34,18 @@ class TcpServer
 			
 			Thread.Sleep(10);
 		}
-		// When stopping the server, properly clean up all resources:
-		foreach (TcpClient client in clients) {
-			client.Close();
+		
+		foreach (TcpNetworkConnection connection in clients) {
+			connection.Close();
 		}
 		listener.Stop();
-		//Debug.Log("Server stopped");
+		Debug.Log("Server stopped");
 	}
-	static void AcceptNewClients(TcpListener listener, List<TcpClient> clients) {
+	static void AcceptNewClients(TcpListener listener, List<TcpNetworkConnection> clients) {
 		if (listener.Pending()) {
-			TcpClient newClient = listener.AcceptTcpClient();
-			clients.Add(newClient);
+			TcpClient newTcpClient = listener.AcceptTcpClient();
+			
+			clients.Add(connection);
 		}
 	}
 	static byte[] ReadFullMessage(NetworkStream stream)
@@ -80,7 +82,7 @@ class TcpServer
 		
 		return data;
 	}
-	static void HandleMessages(List<TcpClient> clients) {
+	static void HandleMessages(List<TcpNetworkConnection> clients) {
 		for (int i = clients.Count - 1; i >= 0; i--) {
 			TcpClient client = clients[i];
 
@@ -116,7 +118,7 @@ class TcpServer
 		stream.Write(length, 0, 4); // 32 bit
 		stream.Write(data, 0, data.Length);
 	}
-	static void CleanupClients(List<TcpClient> clients) {
+	static void CleanupClients(List<TcpNetworkConnection> clients) {
 		for (int i = clients.Count - 1; i >= 0; i--) {
 			// If any of our current clients are disconnected, 
 			// we close the TcpClient to clean up resources, and remove it from our list:
