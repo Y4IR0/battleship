@@ -4,11 +4,9 @@ using System;               // BitConverter
 using System.Collections.Generic; // Queue
 
 namespace NetworkConnections {
-	
-	public enum ConnectionStatus { Connecting, Connected, Disconnecting, Disconnected } // For TCP, Disconnecting is unused
 
-	public delegate void PacketReceiveCallback(byte[] packet, IPEndPoint remote);	
-	
+	public enum ConnectionStatus { Connecting, Connected, Disconnecting, Disconnected }
+
 	/// <summary>
 	/// A user friendly wrapper around a TCP client, that handles message boundaries, doesn't block, and
 	/// catches most exceptions. 
@@ -137,6 +135,7 @@ namespace NetworkConnections {
 							stream.Read(data, 0, 4);
 							_nextPacketLength = BitConverter.ToInt32(data, 0);
 							_isReadingPacket = true;
+							ConnectionLog.WriteLine(2, "Incoming packet of length {0}", _nextPacketLength);
 						} else {
 							return; // wait for the rest of the header to arrive
 						}
@@ -174,7 +173,6 @@ namespace NetworkConnections {
 
 		/// <summary>
 		/// Returns the number of available packets. 
-		/// Returns zero when the Update workflow is used.
 		/// If non-zero, call GetPacket to retrieve the next incoming packet.
 		/// </summary>
 		public int Available() {
@@ -184,7 +182,7 @@ namespace NetworkConnections {
 		}
 
 		/// <summary>
-		/// If a packet is available, and the callback workflow isn't used, this returns the first available packet.
+		/// If a packet is available, this returns the first available packet.
 		/// Otherwise, returns null.
 		/// Use Available first to check whether a packet is available.
 		/// </summary>

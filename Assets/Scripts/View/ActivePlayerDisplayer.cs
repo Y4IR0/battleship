@@ -4,7 +4,7 @@ using UnityEngine;
 public class TurnDisplayer : MonoBehaviour
 {
     [SerializeField] TMP_Text text;
-    [SerializeField] string startString = "Turn: ";
+    [SerializeField] string startString = "Active Player: ";
     
     void ValueChanged(int value)
     {
@@ -36,7 +36,7 @@ public class TurnDisplayer : MonoBehaviour
     {
         if (GameManager.instance != null)
         {
-            GameManager.instance.OnTurnChanged += ValueChanged;
+            GameManager.instance.OnActivePlayerChanged += ValueChanged;
         }
         else
         {
@@ -44,12 +44,12 @@ public class TurnDisplayer : MonoBehaviour
         }
         void LikeAndSubscribe()
         {
-            GameManager.instance.OnTurnChanged += ValueChanged;
+            GameManager.instance.OnActivePlayerChanged += ValueChanged;
         }
     }
     
     void OnDisable()
     {
-        GameManager.instance.OnTurnChanged -= ValueChanged;
+        GameManager.instance.OnActivePlayerChanged -= ValueChanged;
     }
 }

@@ -46,20 +46,32 @@
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\6000.0.66f2\Editor\Data\Tools\Unity.SourceGenerators\Unity.UIToolkit.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\Connection\ConnectionLog.cs" />
+    <Compile Include="Assets\Scripts\Networking\SessionManager.cs" />
+    <Compile Include="Assets\Scripts\Controller\MoveMaker.cs" />
+    <Compile Include="Assets\Scripts\Networking\Server.cs" />
+    <Compile Include="Assets\Scripts\Networking\Client.cs" />
     <Compile Include="Assets\Scripts\View\SelectedShipDisplayer.cs" />
-    <Compile Include="Assets\Scripts\Connection\UnityTcpClient.cs" />
-    <Compile Include="Assets\Scripts\Connection\TCPRECEIVETEST.cs" />
+    <Compile Include="Assets\Scripts\networkingtools\OSCTools\OSCColor.cs" />
+    <Compile Include="Assets\Scripts\networkingtools\OSCTools\OSCBundleIn.cs" />
+    <Compile Include="Assets\Scripts\networkingtools\OSCTools\OSCLog.cs" />
+    <Compile Include="Assets\Scripts\networkingtools\NetworkConnections\ConnectionLog.cs" />
+    <Compile Include="Assets\Scripts\networkingtools\NetworkConnections\TcpNetworkConnection.cs" />
     <Compile Include="Assets\Scripts\View\GridManager.cs" />
-    <Compile Include="Assets\Scripts\Connection\TCPTEST.cs" />
+    <Compile Include="Assets\Scripts\networkingtools\OSCTools\OSCUtil.cs" />
     <Compile Include="Assets\Scripts\View\StateDisplayer.cs" />
-    <Compile Include="Assets\Scripts\Connection\TcpNetworkConnection.cs" />
+    <Compile Include="Assets\Scripts\networkingtools\OSCTools\OSCDispatcher.cs" />
+    <Compile Include="Assets\Scripts\networkingtools\OSCTools\OSCMessageIn.cs" />
+    <Compile Include="Assets\Scripts\networkingtools\OSCTools\OSCBundleOut.cs" />
     <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
-    <Compile Include="Assets\Scripts\View\TurnDisplayer.cs" />
-    <Compile Include="Assets\Scripts\Connection\TcpServerStarter.cs" />
+    <Compile Include="Assets\Scripts\networkingtools\OSCTools\OSCMessageOut.cs" />
+    <Compile Include="Assets\Scripts\Model\BattleshipBoard.cs" />
+    <Compile Include="Assets\Scripts\networkingtools\OSCTools\OSCPatternMatcher.cs" />
+    <Compile Include="Assets\Scripts\View\ActivePlayerDisplayer.cs" />
+    <Compile Include="Assets\Scripts\networkingtools\OSCTools\SimpleMessageDispatcher.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
+    <Compile Include="Assets\Scripts\networkingtools\OSCTools\OSCMessageDispatcher.cs" />
     <Compile Include="Assets\ReadyButton.cs" />
-    <Compile Include="Assets\Scripts\Connection\TcpServer.cs" />
+    <Compile Include="Assets\Scripts\networkingtools\OSCTools\OSCObject.cs" />
     <Compile Include="Assets\Scripts\View\Cell.cs" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
@@ -460,6 +472,9 @@
     <Reference Include="System.Runtime.CompilerServices.Unsafe">
       <HintPath>C:\Users\Yairo\Documents\Unity Projects\Battleship\Library\PackageCache\com.unity.collections@aea9d3bd5e19\Unity.Collections.Tests\System.Runtime.CompilerServices.Unsafe\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>C:\Users\Yairo\Documents\Unity Projects\Battleship\Library\PackageCache\com.unity.nuget.newtonsoft-json@74deb55db2a0\Runtime\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="netstandard">
       <HintPath>C:\Program Files\Unity\Hub\Editor\6000.0.66f2\Editor\Data\NetStandard\ref\2.1.0\netstandard.dll</HintPath>
     </Reference>
@@ -850,6 +865,9 @@
     <Reference Include="Unity.RenderPipelines.Universal.Shaders">
       <HintPath>C:\Users\Yairo\Documents\Unity Projects\Battleship\Library\ScriptAssemblies\Unity.RenderPipelines.Universal.Shaders.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.Multiplayer.PlayMode.Scenarios.Editor">
+      <HintPath>C:\Users\Yairo\Documents\Unity Projects\Battleship\Library\ScriptAssemblies\Unity.Multiplayer.PlayMode.Scenarios.Editor.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.RenderPipelines.Core.Runtime.Shared">
       <HintPath>C:\Users\Yairo\Documents\Unity Projects\Battleship\Library\ScriptAssemblies\Unity.RenderPipelines.Core.Runtime.Shared.dll</HintPath>
     </Reference>
@@ -892,6 +910,9 @@
     <Reference Include="Unity.Rendering.LightTransport.Editor">
       <HintPath>C:\Users\Yairo\Documents\Unity Projects\Battleship\Library\ScriptAssemblies\Unity.Rendering.LightTransport.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.Multiplayer.Playmode">
+      <HintPath>C:\Users\Yairo\Documents\Unity Projects\Battleship\Library\ScriptAssemblies\Unity.Multiplayer.Playmode.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.VisualScripting.Core">
       <HintPath>C:\Users\Yairo\Documents\Unity Projects\Battleship\Library\ScriptAssemblies\Unity.VisualScripting.Core.dll</HintPath>
     </Reference>
@@ -900,6 +921,9 @@
     </Reference>
     <Reference Include="Unity.RenderPipelines.Universal.Editor">
       <HintPath>C:\Users\Yairo\Documents\Unity Projects\Battleship\Library\ScriptAssemblies\Unity.RenderPipelines.Universal.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Multiplayer.PlayMode.Configurations.Editor">
+      <HintPath>C:\Users\Yairo\Documents\Unity Projects\Battleship\Library\ScriptAssemblies\Unity.Multiplayer.PlayMode.Configurations.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Collections.Editor">
       <HintPath>C:\Users\Yairo\Documents\Unity Projects\Battleship\Library\ScriptAssemblies\Unity.Collections.Editor.dll</HintPath>
@@ -918,6 +942,9 @@
     </Reference>
     <Reference Include="Unity.AI.Navigation.Updater">
       <HintPath>C:\Users\Yairo\Documents\Unity Projects\Battleship\Library\ScriptAssemblies\Unity.AI.Navigation.Updater.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Multiplayer.PlayMode.Editor.Bridge">
+      <HintPath>C:\Users\Yairo\Documents\Unity Projects\Battleship\Library\ScriptAssemblies\Unity.Multiplayer.PlayMode.Editor.Bridge.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VisualScripting.Flow.Editor">
       <HintPath>C:\Users\Yairo\Documents\Unity Projects\Battleship\Library\ScriptAssemblies\Unity.VisualScripting.Flow.Editor.dll</HintPath>
@@ -951,6 +978,9 @@
     </Reference>
     <Reference Include="Unity.AI.Navigation.Editor.ConversionSystem">
       <HintPath>C:\Users\Yairo\Documents\Unity Projects\Battleship\Library\ScriptAssemblies\Unity.AI.Navigation.Editor.ConversionSystem.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Multiplayer.PlayMode.Analytics.Editor">
+      <HintPath>C:\Users\Yairo\Documents\Unity Projects\Battleship\Library\ScriptAssemblies\Unity.Multiplayer.PlayMode.Analytics.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>C:\Users\Yairo\Documents\Unity Projects\Battleship\Library\ScriptAssemblies\Unity.TextMeshPro.Editor.dll</HintPath>

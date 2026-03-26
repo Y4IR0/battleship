@@ -137,7 +137,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &69038323
 RectTransform:
   m_ObjectHideFlags: 0
@@ -650,8 +650,8 @@ RectTransform:
   - {fileID: 121022344}
   - {fileID: 909512364}
   - {fileID: 611595172}
-  - {fileID: 261582868}
   - {fileID: 555764336}
+  - {fileID: 261582868}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -671,7 +671,7 @@ GameObject:
   - component: {fileID: 209883128}
   - component: {fileID: 209883127}
   m_Layer: 5
-  m_Name: No, this does not work. (yet)
+  m_Name: Temp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -813,7 +813,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &261582868
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1964,6 +1964,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5f711aff55fd3a4bbf0137d14a6eff2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  clickedTimes: 0
 --- !u!1001 &909512363
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3456,9 +3457,9 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 477670052}
+  - {fileID: 1402360113}
   - {fileID: 69038323}
   - {fileID: 1759230227}
-  - {fileID: 1402360113}
   m_Father: {fileID: 261582868}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}

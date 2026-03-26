@@ -462,6 +462,9 @@
     <Reference Include="System.Runtime.CompilerServices.Unsafe">
       <HintPath>C:\Users\Yairo\Documents\Unity Projects\Battleship\Library\PackageCache\com.unity.collections@aea9d3bd5e19\Unity.Collections.Tests\System.Runtime.CompilerServices.Unsafe\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>C:\Users\Yairo\Documents\Unity Projects\Battleship\Library\PackageCache\com.unity.nuget.newtonsoft-json@74deb55db2a0\Runtime\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="mscorlib">
       <HintPath>C:\Program Files\Unity\Hub\Editor\6000.0.66f2\Editor\Data\UnityReferenceAssemblies\unity-4.8-api\mscorlib.dll</HintPath>
     </Reference>
@@ -867,6 +870,9 @@
     <Reference Include="Unity.RenderPipelines.Universal.Shaders">
       <HintPath>C:\Users\Yairo\Documents\Unity Projects\Battleship\Library\ScriptAssemblies\Unity.RenderPipelines.Universal.Shaders.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.Multiplayer.PlayMode.Scenarios.Editor">
+      <HintPath>C:\Users\Yairo\Documents\Unity Projects\Battleship\Library\ScriptAssemblies\Unity.Multiplayer.PlayMode.Scenarios.Editor.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.RenderPipelines.Core.Runtime.Shared">
       <HintPath>C:\Users\Yairo\Documents\Unity Projects\Battleship\Library\ScriptAssemblies\Unity.RenderPipelines.Core.Runtime.Shared.dll</HintPath>
     </Reference>
@@ -909,6 +915,9 @@
     <Reference Include="Unity.Rendering.LightTransport.Editor">
       <HintPath>C:\Users\Yairo\Documents\Unity Projects\Battleship\Library\ScriptAssemblies\Unity.Rendering.LightTransport.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.Multiplayer.Playmode">
+      <HintPath>C:\Users\Yairo\Documents\Unity Projects\Battleship\Library\ScriptAssemblies\Unity.Multiplayer.Playmode.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.VisualScripting.Core">
       <HintPath>C:\Users\Yairo\Documents\Unity Projects\Battleship\Library\ScriptAssemblies\Unity.VisualScripting.Core.dll</HintPath>
     </Reference>
@@ -917,6 +926,9 @@
     </Reference>
     <Reference Include="Unity.RenderPipelines.Universal.Editor">
       <HintPath>C:\Users\Yairo\Documents\Unity Projects\Battleship\Library\ScriptAssemblies\Unity.RenderPipelines.Universal.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Multiplayer.PlayMode.Configurations.Editor">
+      <HintPath>C:\Users\Yairo\Documents\Unity Projects\Battleship\Library\ScriptAssemblies\Unity.Multiplayer.PlayMode.Configurations.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Collections.Editor">
       <HintPath>C:\Users\Yairo\Documents\Unity Projects\Battleship\Library\ScriptAssemblies\Unity.Collections.Editor.dll</HintPath>
@@ -935,6 +947,9 @@
     </Reference>
     <Reference Include="Unity.AI.Navigation.Updater">
       <HintPath>C:\Users\Yairo\Documents\Unity Projects\Battleship\Library\ScriptAssemblies\Unity.AI.Navigation.Updater.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Multiplayer.PlayMode.Editor.Bridge">
+      <HintPath>C:\Users\Yairo\Documents\Unity Projects\Battleship\Library\ScriptAssemblies\Unity.Multiplayer.PlayMode.Editor.Bridge.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VisualScripting.Flow.Editor">
       <HintPath>C:\Users\Yairo\Documents\Unity Projects\Battleship\Library\ScriptAssemblies\Unity.VisualScripting.Flow.Editor.dll</HintPath>
@@ -968,6 +983,9 @@
     </Reference>
     <Reference Include="Unity.AI.Navigation.Editor.ConversionSystem">
       <HintPath>C:\Users\Yairo\Documents\Unity Projects\Battleship\Library\ScriptAssemblies\Unity.AI.Navigation.Editor.ConversionSystem.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Multiplayer.PlayMode.Analytics.Editor">
+      <HintPath>C:\Users\Yairo\Documents\Unity Projects\Battleship\Library\ScriptAssemblies\Unity.Multiplayer.PlayMode.Analytics.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>C:\Users\Yairo\Documents\Unity Projects\Battleship\Library\ScriptAssemblies\Unity.TextMeshPro.Editor.dll</HintPath>
