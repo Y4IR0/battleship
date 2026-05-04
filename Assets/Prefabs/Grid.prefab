@@ -95,7 +95,7 @@ MonoBehaviour:
   cells:
   - {fileID: 8226140767980907369}
   - {fileID: 6955121197674942186}
-  cellPrefab: {fileID: 4242036523558444915, guid: 9759eb679b231a44a9dd556854b1e91f, type: 3}
+  cellPresenterPrefab: {fileID: 4242036523558444915, guid: 9759eb679b231a44a9dd556854b1e91f, type: 3}
 --- !u!114 &6097439299119058658
 MonoBehaviour:
   m_ObjectHideFlags: 0

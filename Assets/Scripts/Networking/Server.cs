@@ -99,7 +99,7 @@ public class Server : MonoBehaviour
 		board.OnCellChange += CellChangeRpc;
 		board.OnGameOver += GameOverRpc;
 		// (Note: no unsubscribe needed in OnDestroy, since the server owns the private board variable.)
-
+		
 		// Subscribe listeners for incoming messages:
 		// The (optional) list of parameter types (OSCUtil.INT) lets the dispatcher filter
 		//  messages that do not satisfy the expected signature (=parameter list):
@@ -110,36 +110,36 @@ public class Server : MonoBehaviour
 
 	// ----- Handle incoming RPCs (called by dispatcher):
 
-	void MakeMoveRpc(OSCMessageIn message, IPEndPoint remote) {
-		int row = message.ReadInt();
-		int col = message.ReadInt();
-		Debug.Log($"S: Make move {row},{col}. Remote={remote}");
-		if (playerIDs.Count<2) {
-			Debug.Log("Waiting for more players");
-			return;
-		}
-		// Looping over all players to find the player ID:
-		//  a bit ugly, but acceptable since we only have two players.
-		foreach (var conn in playerIDs.Keys) {
-			Debug.Log("Checking " + conn.Remote);
-			// Warning: must use Equals, not == !
-			// https://stackoverflow.com/questions/2782973/comparison-of-ipendpoint-objects-not-working !!!
-			if (conn.Remote.Equals(remote)) { 
-				Debug.Log("This client is a player - allowed to make moves");
-				board.MakeMove(row, col, playerIDs[conn]);
-			}
-		}
-	}
-	void ResetRpc(OSCMessageIn message, IPEndPoint remote) {
-		// Only allow reset when game is over, and only when sent by one of the two active players:
-		// (Note: this is a LINQ query using a lambda function. Writing a for loop
-		//  and if statement is fine too, but more code.)
-		if (board.activePlayer == 0 && playerIDs.Keys.Select((a) => a.Remote).Contains(remote)) {
-			board.Reset();
-		} else {
-			Debug.Log("Won't reset active game / spectators cannot reset!");
-		}
-	}
+	// void MakeMoveRpc(OSCMessageIn message, IPEndPoint remote) {
+	// 	int row = message.ReadInt();
+	// 	int col = message.ReadInt();
+	// 	Debug.Log($"S: Make move {row},{col}. Remote={remote}");
+	// 	if (playerIDs.Count<2) {
+	// 		Debug.Log("Waiting for more players");
+	// 		return;
+	// 	}
+	// 	// Looping over all players to find the player ID:
+	// 	//  a bit ugly, but acceptable since we only have two players.
+	// 	foreach (var conn in playerIDs.Keys) {
+	// 		Debug.Log("Checking " + conn.Remote);
+	// 		// Warning: must use Equals, not == !
+	// 		// https://stackoverflow.com/questions/2782973/comparison-of-ipendpoint-objects-not-working !!!
+	// 		if (conn.Remote.Equals(remote)) { 
+	// 			Debug.Log("This client is a player - allowed to make moves");
+	// 			board.MakeMove(row, col, playerIDs[conn]);
+	// 		}
+	// 	}
+	// }
+	// void ResetRpc(OSCMessageIn message, IPEndPoint remote) {
+	// 	// Only allow reset when game is over, and only when sent by one of the two active players:
+	// 	// (Note: this is a LINQ query using a lambda function. Writing a for loop
+	// 	//  and if statement is fine too, but more code.)
+	// 	if (board.activePlayer == 0 && playerIDs.Keys.Select((a) => a.Remote).Contains(remote)) {
+	// 		board.Reset();
+	// 	} else {
+	// 		Debug.Log("Won't reset active game / spectators cannot reset!");
+	// 	}
+	// }
 
 	// ----- Outgoing RPCs:
 	// This RPC is called when a client joins who is a player:

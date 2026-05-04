@@ -171,6 +171,7 @@ public class GameManager : MonoBehaviour
 
     void PlaceShip(int row, int column, int player, int shipType)
     {
+        // This is part of model. TODO: check whether the ship fits!
         if (shipType == 0) return; // Checks if a ship is selected
         
         int[,] grid = (int[,])(player == 1 ? shipsGrid1 : shipsGrid2).Clone();

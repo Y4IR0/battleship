@@ -6,6 +6,7 @@ public class SelectedShipDisplayer : MonoBehaviour
     [SerializeField] TMP_Text text;
     [SerializeField] string startString = "SelectedShip: ";
     [SerializeField] private int player = 0;
+    [SerializeField] Client client;
     
     void ValueChanged(int value)
     {
@@ -44,46 +45,17 @@ public class SelectedShipDisplayer : MonoBehaviour
     
     void OnEnable()
     {
-        if (GameManager.instance != null)
-        {
-            switch (player)
-            {
-                case 1:
-                    GameManager.instance.OnSelectedShipPlayer1Changed += ValueChanged;
-                    break;
-                case 2:
-                    GameManager.instance.OnSelectedShipPlayer2Changed += ValueChanged;
-                    break;
-            }
-        }
+        if (player == 1)
+            client.OnSelectedShipPlayer1Changed += ValueChanged;
         else
-        {
-            GameManager.OnInstanceReady += LikeAndSubscribe;
-        }
-        void LikeAndSubscribe()
-        {
-            switch (player)
-            {
-                case 1:
-                    GameManager.instance.OnSelectedShipPlayer1Changed += ValueChanged;
-                    break;
-                case 2:
-                    GameManager.instance.OnSelectedShipPlayer2Changed += ValueChanged;
-                    break;
-            }
-        }
+            client.OnSelectedShipPlayer2Changed += ValueChanged;
     }
     
     void OnDisable()
     {
-        switch (player)
-        {
-            case 1:
-                GameManager.instance.OnSelectedShipPlayer1Changed -= ValueChanged;
-                break;
-            case 2:
-                GameManager.instance.OnSelectedShipPlayer2Changed -= ValueChanged;
-                break;
-        }
+        if (player == 1)
+            client.OnSelectedShipPlayer1Changed -= ValueChanged;
+        else
+            client.OnSelectedShipPlayer2Changed -= ValueChanged;
     }
 }

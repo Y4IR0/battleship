@@ -97,10 +97,6 @@ public class BattleshipBoard
     public event Action<int[,]> OnShipsGrid2Changed;
     public event Action<int[,]> OnShotsGrid1Changed;
     public event Action<int[,]> OnShotsGrid2Changed;
-    
-    
-    
-    public event Action<int, int, int> OnCellClicked;
 
     
     
@@ -125,11 +121,6 @@ public class BattleshipBoard
             selectedShipPlayer1 = 0;
             selectedShipPlayer2 = 0;
         }
-    }
-
-    public void TriggerCellClicked(int row, int column, int owner)
-    {
-        OnCellClicked?.Invoke(row, column, owner);
     }
     
     void OnCellClickedHandler(int row, int column, int player)

@@ -5,6 +5,7 @@ public class TurnDisplayer : MonoBehaviour
 {
     [SerializeField] TMP_Text text;
     [SerializeField] string startString = "Active Player: ";
+    [SerializeField] Client client;
     
     void ValueChanged(int value)
     {
@@ -34,22 +35,11 @@ public class TurnDisplayer : MonoBehaviour
     
     void OnEnable()
     {
-        if (GameManager.instance != null)
-        {
-            GameManager.instance.OnActivePlayerChanged += ValueChanged;
-        }
-        else
-        {
-            GameManager.OnInstanceReady += LikeAndSubscribe;
-        }
-        void LikeAndSubscribe()
-        {
-            GameManager.instance.OnActivePlayerChanged += ValueChanged;
-        }
+        client.OnActivePlayerChanged += ValueChanged;
     }
     
     void OnDisable()
     {
-        GameManager.instance.OnActivePlayerChanged -= ValueChanged;
+        client.OnActivePlayerChanged -= ValueChanged;
     }
 }

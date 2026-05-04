@@ -13,7 +13,7 @@ public class SessionManager : MonoBehaviour
 
     
     
-    public void SelectSessionType(bool isHost) {
+    public void StartSessionType(bool isHost) {
         if (isHost)
         {
             StartServer();

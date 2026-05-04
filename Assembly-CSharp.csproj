@@ -47,32 +47,33 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Networking\SessionManager.cs" />
+    <Compile Include="Assets\Scripts\Networking\networkingtools\OSCTools\OSCColor.cs" />
     <Compile Include="Assets\Scripts\Controller\MoveMaker.cs" />
     <Compile Include="Assets\Scripts\Networking\Server.cs" />
     <Compile Include="Assets\Scripts\Networking\Client.cs" />
     <Compile Include="Assets\Scripts\View\SelectedShipDisplayer.cs" />
-    <Compile Include="Assets\Scripts\networkingtools\OSCTools\OSCColor.cs" />
-    <Compile Include="Assets\Scripts\networkingtools\OSCTools\OSCBundleIn.cs" />
-    <Compile Include="Assets\Scripts\networkingtools\OSCTools\OSCLog.cs" />
-    <Compile Include="Assets\Scripts\networkingtools\NetworkConnections\ConnectionLog.cs" />
-    <Compile Include="Assets\Scripts\networkingtools\NetworkConnections\TcpNetworkConnection.cs" />
+    <Compile Include="Assets\Scripts\Networking\networkingtools\OSCTools\OSCMessageOut.cs" />
+    <Compile Include="Assets\Scripts\Networking\networkingtools\OSCTools\OSCObject.cs" />
+    <Compile Include="Assets\Scripts\Networking\networkingtools\NetworkConnections\ConnectionLog.cs" />
+    <Compile Include="Assets\Scripts\Networking\networkingtools\OSCTools\OSCMessageIn.cs" />
     <Compile Include="Assets\Scripts\View\GridManager.cs" />
-    <Compile Include="Assets\Scripts\networkingtools\OSCTools\OSCUtil.cs" />
+    <Compile Include="Assets\Scripts\Networking\networkingtools\OSCTools\OSCPatternMatcher.cs" />
+    <Compile Include="Assets\Scripts\Networking\networkingtools\OSCTools\OSCBundleIn.cs" />
+    <Compile Include="Assets\Scripts\Controller\CellController.cs" />
     <Compile Include="Assets\Scripts\View\StateDisplayer.cs" />
-    <Compile Include="Assets\Scripts\networkingtools\OSCTools\OSCDispatcher.cs" />
-    <Compile Include="Assets\Scripts\networkingtools\OSCTools\OSCMessageIn.cs" />
-    <Compile Include="Assets\Scripts\networkingtools\OSCTools\OSCBundleOut.cs" />
+    <Compile Include="Assets\Scripts\Networking\networkingtools\NetworkConnections\TcpNetworkConnection.cs" />
+    <Compile Include="Assets\Scripts\Networking\networkingtools\OSCTools\OSCDispatcher.cs" />
     <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
-    <Compile Include="Assets\Scripts\networkingtools\OSCTools\OSCMessageOut.cs" />
     <Compile Include="Assets\Scripts\Model\BattleshipBoard.cs" />
-    <Compile Include="Assets\Scripts\networkingtools\OSCTools\OSCPatternMatcher.cs" />
+    <Compile Include="Assets\Scripts\Networking\networkingtools\OSCTools\OSCLog.cs" />
+    <Compile Include="Assets\Scripts\Networking\networkingtools\OSCTools\OSCMessageDispatcher.cs" />
+    <Compile Include="Assets\Scripts\Networking\networkingtools\OSCTools\OSCUtil.cs" />
+    <Compile Include="Assets\Scripts\Networking\networkingtools\OSCTools\SimpleMessageDispatcher.cs" />
+    <Compile Include="Assets\Scripts\Networking\networkingtools\OSCTools\OSCBundleOut.cs" />
     <Compile Include="Assets\Scripts\View\ActivePlayerDisplayer.cs" />
-    <Compile Include="Assets\Scripts\networkingtools\OSCTools\SimpleMessageDispatcher.cs" />
+    <Compile Include="Assets\Scripts\View\CellPresenter.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
-    <Compile Include="Assets\Scripts\networkingtools\OSCTools\OSCMessageDispatcher.cs" />
     <Compile Include="Assets\ReadyButton.cs" />
-    <Compile Include="Assets\Scripts\networkingtools\OSCTools\OSCObject.cs" />
-    <Compile Include="Assets\Scripts\View\Cell.cs" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile-2-Pass.shader" />
@@ -466,14 +467,14 @@
     <Reference Include="Unity.VisualScripting.Antlr3.Runtime">
       <HintPath>C:\Users\Yairo\Documents\Unity Projects\Battleship\Library\PackageCache\com.unity.visualscripting@6279e2b7c485\Runtime\VisualScripting.Flow\Dependencies\NCalc\Unity.VisualScripting.Antlr3.Runtime.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>C:\Users\Yairo\Documents\Unity Projects\Battleship\Library\PackageCache\com.unity.nuget.newtonsoft-json@74deb55db2a0\Runtime\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="Mono.Cecil">
       <HintPath>C:\Users\Yairo\Documents\Unity Projects\Battleship\Library\PackageCache\com.unity.nuget.mono-cecil@d78732e851eb\Mono.Cecil.dll</HintPath>
     </Reference>
     <Reference Include="System.Runtime.CompilerServices.Unsafe">
       <HintPath>C:\Users\Yairo\Documents\Unity Projects\Battleship\Library\PackageCache\com.unity.collections@aea9d3bd5e19\Unity.Collections.Tests\System.Runtime.CompilerServices.Unsafe\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>C:\Users\Yairo\Documents\Unity Projects\Battleship\Library\PackageCache\com.unity.nuget.newtonsoft-json@74deb55db2a0\Runtime\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="netstandard">
       <HintPath>C:\Program Files\Unity\Hub\Editor\6000.0.66f2\Editor\Data\NetStandard\ref\2.1.0\netstandard.dll</HintPath>
@@ -850,14 +851,14 @@
     <Reference Include="UnityEditor.UI">
       <HintPath>C:\Users\Yairo\Documents\Unity Projects\Battleship\Library\ScriptAssemblies\UnityEditor.UI.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.Searcher.Editor">
-      <HintPath>C:\Users\Yairo\Documents\Unity Projects\Battleship\Library\ScriptAssemblies\Unity.Searcher.Editor.dll</HintPath>
+    <Reference Include="Unity.AI.Navigation">
+      <HintPath>C:\Users\Yairo\Documents\Unity Projects\Battleship\Library\ScriptAssemblies\Unity.AI.Navigation.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Rider.Editor">
       <HintPath>C:\Users\Yairo\Documents\Unity Projects\Battleship\Library\ScriptAssemblies\Unity.Rider.Editor.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.AI.Navigation">
-      <HintPath>C:\Users\Yairo\Documents\Unity Projects\Battleship\Library\ScriptAssemblies\Unity.AI.Navigation.dll</HintPath>
+    <Reference Include="Unity.Searcher.Editor">
+      <HintPath>C:\Users\Yairo\Documents\Unity Projects\Battleship\Library\ScriptAssemblies\Unity.Searcher.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.RenderPipeline.Universal.ShaderLibrary">
       <HintPath>C:\Users\Yairo\Documents\Unity Projects\Battleship\Library\ScriptAssemblies\Unity.RenderPipeline.Universal.ShaderLibrary.dll</HintPath>

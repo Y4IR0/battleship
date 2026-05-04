@@ -5,14 +5,16 @@ using UnityEngine;
 
 public class GridManager : MonoBehaviour
 {
+    [SerializeField] MoveMaker moveMaker;
+    
     public int owner = 0;
     /*
      *  1 = player1
      *  2 = player2
      */
     
-    public List<Cell> cells = new List<Cell>();
-    [SerializeField] Cell cellPrefab;
+    public List<CellPresenter> cells = new List<CellPresenter>();
+    [SerializeField] CellPresenter cellPresenterPrefab;
 
     
     
@@ -35,9 +37,9 @@ public class GridManager : MonoBehaviour
         cells.Clear();
     }
     
-    List<Cell> CreateCells()
+    List<CellPresenter> CreateCells()
     {
-        List<Cell> cells = new List<Cell>();
+        List<CellPresenter> cells = new List<CellPresenter>();
         
         int currentRow = 1;
         int currentColumn = 1;
@@ -49,17 +51,17 @@ public class GridManager : MonoBehaviour
             currentColumn = 1 + (int)(i / 10);
             
             // Instantiate new cell
-            Cell newCell = Instantiate<Cell>(cellPrefab, transform);
-            newCell.row = currentRow;
-            newCell.column = currentColumn;
-            newCell.owner = owner;
+            CellPresenter newCellPresenter = Instantiate<CellPresenter>(cellPresenterPrefab, transform);
+            newCellPresenter.row = currentRow;
+            newCellPresenter.column = currentColumn;
+            newCellPresenter.owner = owner;
             
             // Like and subscribe
-            newCell.OnCellClicked += HandleCellClicked;
-            newCell.OnCellHoverEnter += HandleCellHoverEnter;
-            newCell.OnCellHoverExit += HandleCellHoverExit;
+            newCellPresenter.OnCellClicked += HandleCellClicked;
+            newCellPresenter.OnCellHoverEnter += HandleCellHoverEnter;
+            newCellPresenter.OnCellHoverExit += HandleCellHoverExit;
             
-            cells.Add(newCell);
+            cells.Add(newCellPresenter);
         }
         
         return cells;
@@ -97,70 +99,53 @@ public class GridManager : MonoBehaviour
         }
     }
 
-    void HandleCellClicked(Cell cell)
+    void HandleCellClicked(CellPresenter cellPresenter)
     {
-        GameManager.instance.TriggerCellClicked(cell.row, cell.column, cell.owner);
+        moveMaker.TriggerCellClicked(cellPresenter.row, cellPresenter.column, cellPresenter.owner);
     }
     
-    void HandleCellHoverEnter(Cell cell)
+    void HandleCellHoverEnter(CellPresenter cellPresenter)
     {
         throw new NotImplementedException();
     }
     
-    void HandleCellHoverExit(Cell cell)
+    void HandleCellHoverExit(CellPresenter cellPresenter)
     {
         throw new NotImplementedException();
     }
 
     void OnEnable()
     {
-        if (GameManager.instance != null)
+        moveMaker.OnStartRound += OnStartRound;
+        
+        if (owner == 1)
         {
-            GameManager.instance.OnStartRound += OnStartRound;
-            if (owner == 1)
-            {
-                GameManager.instance.OnShipsGrid1Changed += HandleShipsGridChanged;
-                GameManager.instance.OnShotsGrid1Changed += HandleShotsGridChanged;
-            }
-            else
-            {
-                GameManager.instance.OnShipsGrid2Changed += HandleShipsGridChanged;
-                GameManager.instance.OnShotsGrid2Changed += HandleShotsGridChanged;
-            }
+            moveMaker.OnShipsGrid1Changed += HandleShipsGridChanged;
+            moveMaker.OnShotsGrid1Changed += HandleShotsGridChanged;
         }
         else
-            GameManager.OnInstanceReady += LikeAndSubscribe;
-        void LikeAndSubscribe()
         {
-            GameManager.instance.OnStartRound += OnStartRound;
-            if (owner == 1)
-            {
-                GameManager.instance.OnShipsGrid1Changed += HandleShipsGridChanged;
-                GameManager.instance.OnShotsGrid1Changed += HandleShotsGridChanged;
-            }
-            else
-            {
-                GameManager.instance.OnShipsGrid2Changed += HandleShipsGridChanged;
-                GameManager.instance.OnShotsGrid2Changed += HandleShotsGridChanged;
-            }
+            moveMaker.OnShipsGrid2Changed += HandleShipsGridChanged;
+            moveMaker.OnShotsGrid2Changed += HandleShotsGridChanged;
         }
     }
 
     void OnDisable()
     {
-        GameManager.instance.OnStartRound -= OnStartRound;
+        moveMaker.OnStartRound -= OnStartRound;
+        
         if (owner == 1)
         {
-            GameManager.instance.OnShipsGrid1Changed -= HandleShipsGridChanged;
-            GameManager.instance.OnShotsGrid1Changed -= HandleShotsGridChanged;
+            moveMaker.OnShipsGrid1Changed -= HandleShipsGridChanged;
+            moveMaker.OnShotsGrid1Changed -= HandleShotsGridChanged;
         }
         else
         {
-            GameManager.instance.OnShipsGrid2Changed -= HandleShipsGridChanged;
-            GameManager.instance.OnShotsGrid2Changed -= HandleShotsGridChanged;
+            moveMaker.OnShipsGrid2Changed -= HandleShipsGridChanged;
+            moveMaker.OnShotsGrid2Changed -= HandleShotsGridChanged;
         }
         
-        foreach (Cell cell in cells)
+        foreach (CellPresenter cell in cells)
         {
             cell.OnCellClicked -= HandleCellClicked;
             cell.OnCellHoverEnter -= HandleCellHoverEnter;

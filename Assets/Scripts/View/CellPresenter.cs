@@ -2,7 +2,7 @@ using System;
 using TMPro;
 using UnityEngine;
 
-public class Cell : MonoBehaviour
+public class CellPresenter : MonoBehaviour
 {
     public int row;
     public int column;
@@ -38,9 +38,9 @@ public class Cell : MonoBehaviour
      [SerializeField] Color missColor = new  Color(.1f, .1f, .4f, 1);
      [SerializeField] Color hitColor = new  Color(.8f, .2f, .2f, 1);
 
-    public event Action<Cell> OnCellClicked;
-    public event Action<Cell> OnCellHoverEnter;
-    public event Action<Cell> OnCellHoverExit;
+    public event Action<CellPresenter> OnCellClicked;
+    public event Action<CellPresenter> OnCellHoverEnter;
+    public event Action<CellPresenter> OnCellHoverExit;
 
 
 

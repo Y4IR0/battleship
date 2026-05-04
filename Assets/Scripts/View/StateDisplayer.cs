@@ -5,6 +5,7 @@ public class StateDisplayer : MonoBehaviour
 {
     [SerializeField] TMP_Text text;
     [SerializeField] string startString = "State: ";
+    [SerializeField] Client client;
     
     void ValueChanged(int value)
     {
@@ -34,22 +35,11 @@ public class StateDisplayer : MonoBehaviour
     
     void OnEnable()
     {
-        if (GameManager.instance != null)
-        {
-            GameManager.instance.OnStateChanged += ValueChanged;
-        }
-        else
-        {
-            GameManager.OnInstanceReady += LikeAndSubscribe;
-        }
-        void LikeAndSubscribe()
-        {
-            GameManager.instance.OnStateChanged += ValueChanged;
-        }
+        //client.OnStateChanged += ValueChanged;
     }
     
     void OnDisable()
     {
-        GameManager.instance.OnStateChanged -= ValueChanged;
+        client.OnStateChanged -= ValueChanged;
     }
 }

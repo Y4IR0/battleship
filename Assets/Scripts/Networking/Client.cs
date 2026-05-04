@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using System.Net;
 using System.Net.Sockets;
@@ -15,19 +16,27 @@ public class Client : MonoBehaviour
 	TcpNetworkConnection connection;
 	OSCDispatcher dispatcher;
 
-	// ----- TicTacToe client things:
+	
+	
+	// ----- Game client things:
 
 	// Views subscribe here, on any client:
-	public delegate void CellChangeEvent(int row, int col, int value);
-	public event CellChangeEvent OnCellChange;
+	public static event Action OnInstanceReady;
+	public event Action OnStartRound;
+	public event Action<int> OnStateChanged;
+	public event Action<int> OnActivePlayerChanged;
+	public event Action<int> OnSelectedShipPlayer1Changed;
+	public event Action<int> OnSelectedShipPlayer2Changed;
+	public event Action<bool> OnReady1Changed;
+	public event Action<bool> OnReady2Changed;
+	public event Action<int[,]> OnShipsGrid1Changed;
+	public event Action<int[,]> OnShipsGrid2Changed;
+	public event Action<int[,]> OnShotsGrid1Changed;
+	public event Action<int[,]> OnShotsGrid2Changed;
 
-	public delegate void ActivePlayerChangeEvent(int activePlayer);
-	public event ActivePlayerChangeEvent OnActivePlayerChange;
-
+	//idk wtf this is
 	public event System.Action<int> OnPlayerInfoReceived;
 
-	public delegate void GameOverEvent(int winner);
-	public event GameOverEvent OnGameOver;
 
 	void Start()
     {
@@ -65,28 +74,20 @@ public class Client : MonoBehaviour
 	void Initialize() {
 		// The (optional) list of parameter types (OSCUtil.INT) lets the dispatcher filter
 		//  messages that do not satisfy the expected signature (=parameter list):
-		dispatcher.AddListener("/CellChange", CellChangeRpc, OSCUtil.INT, OSCUtil.INT, OSCUtil.INT); 
-		dispatcher.AddListener("/ActivePlayer", ActivePlayerChangeRpc, OSCUtil.INT);
-		dispatcher.AddListener("/GameOver", GameOverRpc, OSCUtil.INT);
-		dispatcher.AddListener("/PlayerInfo", PlayerInfoRpc, OSCUtil.INT);
+		
+		
+		
+		
+		// Listens to the actual messages, currently errors
+		
+		//dispatcher.AddListener("/CellChange", CellChangeRpc, OSCUtil.INT, OSCUtil.INT, OSCUtil.INT); 
+		//dispatcher.AddListener("/ActivePlayer", ActivePlayerChangeRpc, OSCUtil.INT);
+		//dispatcher.AddListener("/GameOver", GameOverRpc, OSCUtil.INT);
+		//dispatcher.AddListener("/PlayerInfo", PlayerInfoRpc, OSCUtil.INT);
 	}
 
 	// ----- Incoming RPCs (events are triggered, and View classes subscribe):
-
-	void CellChangeRpc(OSCMessageIn message, IPEndPoint remote) {
-		int row = message.ReadInt();
-		int col = message.ReadInt();
-		int value = message.ReadInt();
-		OnCellChange?.Invoke(row, col, value);
-	}
-	void ActivePlayerChangeRpc(OSCMessageIn message, IPEndPoint remote) {
-		int activePlayer = message.ReadInt();
-		OnActivePlayerChange?.Invoke(activePlayer);
-	}
-	void GameOverRpc(OSCMessageIn message, IPEndPoint remote) {
-		int winner = message.ReadInt();
-		OnGameOver?.Invoke(winner);
-	}
+	
 	void PlayerInfoRpc(OSCMessageIn message, IPEndPoint remote) {
 		int playerIndex = message.ReadInt();
 		OnPlayerInfoReceived?.Invoke(playerIndex);
